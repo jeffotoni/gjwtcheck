@@ -9,5 +9,6 @@ import (
 func (s StructConnect) Ping(c *fiber.Ctx) error {
 	c.Set("Content-Type", "application/json")
 	msgID := mw.GetUUID(c)
+	println("log ping ID:", msgID)
 	return c.Status(200).SendString(`{"pong":"🏓"}`)
 }

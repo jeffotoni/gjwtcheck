@@ -12,17 +12,19 @@ import (
 
 func (s StructConnect) Token(c *fiber.Ctx) error {
 	c.Set("Content-Type", "application/json")
+	var err error
+
 	msgID := mw.GetUUID(c)
 	code := 400
 	authorization := string(c.Request().Header.Peek("X-Authorization"))
 	if len(string(authorization)) <= 0 {
-		return c.Status(code).JSON(mErrors.Errors{Msg: `Error: failed to try to generate token`})
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: `Error: failed to try to generate token`})
 	}
 
 	var response mjwt.ResponseToken
 	if response.Token, response.Expires, err = jwtCore.Token(authorization, hd.IP(c)); err != nil {
 		code = 401
-		return c.Status(code).JSON(mErrors.Errors{Msg: fmts.ConcatStr("Error: ", err.Error())})
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: ", err.Error())})
 	}
 
 	code = 200

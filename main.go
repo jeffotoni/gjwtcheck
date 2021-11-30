@@ -11,5 +11,5 @@ import (
 func main() {
 	app := fiber.New(fiber.Config{BodyLimit: 10 * 1024 * 1024})
 	route.AllRoutes(app, route.StructConnect{})
-	app.Listen(config.HTTPPORT)
+	app.Listen(config.HTTP_PORT)
 }

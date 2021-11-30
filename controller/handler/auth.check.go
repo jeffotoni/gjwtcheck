@@ -13,22 +13,23 @@ import (
 
 func (s StructConnect) Check(c *fiber.Ctx) error {
 	c.Set("Content-Type", "application/json")
+	var err error
 
 	code := 400
 	msgID := mw.GetUUID(c)
 	if len(string(c.Body())) <= 0 {
-		return c.Status(code).JSON(`{"msg":"Error empty body"}`)
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: empty body")})
 	}
 
 	var user mLg.UserAuth
 	if err := c.BodyParser(&user); err != nil {
 		code = 400
-		return c.Status(code).JSON(mErrors.Errors{Msg: fmts.ConcatStr("Error: ", err.Error())})
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: ", err.Error())})
 	}
 
 	if user.Key, user.Expires, err = jwtGen.Token(user.User, hd.IP(c)); err != nil {
 		code = 401
-		return c.Status(code).JSON(mErrors.Errors{Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
 	}
 
 	code = 200

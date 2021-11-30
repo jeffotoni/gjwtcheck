@@ -8,7 +8,6 @@ require (
 	github.com/gofiber/jwt/v2 v2.2.7
 	github.com/gofiber/utils v0.1.2
 	github.com/jeffotoni/gconcat v0.0.10
-	github.com/rs/zerolog v1.26.0
 )
 
 require (
@@ -18,5 +17,5 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.31.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/sys v0.0.0-20210809222454-d867a43fc93e // indirect
+	golang.org/x/sys v0.0.0-20210514084401-e8d321eab015 // indirect
 )
