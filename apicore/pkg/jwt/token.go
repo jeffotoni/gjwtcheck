@@ -9,8 +9,9 @@ import (
 	cert "github.com/jeffotoni/gjwtcheck/apicore/cert"
 	mJwt "github.com/jeffotoni/gjwtcheck/apicore/models/jwt"
 
+	"log"
+
 	"github.com/jeffotoni/gjwtcheck/apicore/pkg/fmts"
-	"github.com/rs/zerolog/log"
 )
 
 var (
