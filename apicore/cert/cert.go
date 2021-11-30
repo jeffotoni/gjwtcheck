@@ -5,10 +5,10 @@ package cert
 
 import (
 	"crypto/rsa"
-	"time"
+
+	"log"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/rs/zerolog/log"
 )
 
 // openssl genrsa -out private.rsa 1024
@@ -80,22 +80,15 @@ func init() {
 	publicByte := []byte(RSA_PUBLIC_AUTH)
 	PublicKeyAuth, err = jwt.ParseRSAPublicKeyFromPEM(publicByte)
 	if err != nil {
-		log.Error().
-			Str("@timestamp", time.Now().Format("2006-01-02T15:04:05.000Z")).
-			Str("data", time.Now().Format("2006-01-02 15:04:05")).
-			Str("func", "jwt.ParseRSAPublicKeyFromPEM(publicByte)").
-			Msg(err.Error())
+		log.Println("error ParseRSAPublicKeyFromPEM:", err.Error())
 		return
 	}
 	PublicKey = PublicKeyAuth
 	privateByte := []byte(RSA_PRIVATE_AUTH)
 	PrivateKeyAuth, err = jwt.ParseRSAPrivateKeyFromPEM(privateByte)
 	if err != nil {
-		log.Error().
-			Str("@timestamp", time.Now().Format("2006-01-02T15:04:05.000Z")).
-			Str("data", time.Now().Format("2006-01-02 15:04:05")).
-			Str("func", "jwt.ParseRSAPrivateKeyFromPEM(privateByte)").
-			Msg(err.Error())
+		log.Println("error ParseRSAPrivateKeyFromPEM:", err.Error())
+		return
 	}
 	PrivateKey = PrivateKeyAuth
 }
