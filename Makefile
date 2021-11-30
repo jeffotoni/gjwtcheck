@@ -9,9 +9,6 @@ AWS_DEFAULT_PROFILE=gjwtcheck
 GOPRIVATE=github.com/jeffotoni/gjwtcheck
 
 region=us-east-1
-API_ENV=PROD
-API_AMB=BETA
-ENV_AMBI=
 
 build:
 	@echo "########## Compilando nossa API ... "
