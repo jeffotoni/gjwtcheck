@@ -8,6 +8,8 @@ RUN cp gjwtcheck /go/bin/gjwtcheck
 
 FROM alpine:latest as builder2
 RUN apk add --no-cache upx
+RUN apk add --no-cache tzdata
+ENV TZ America/Sao_Paulo
 
 COPY --from=builder /go/bin/gjwtcheck /go/bin/gjwtcheck
 WORKDIR /go/bin
