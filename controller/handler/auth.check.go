@@ -2,8 +2,8 @@ package handler
 
 import (
 	"github.com/gofiber/fiber/v2"
-	mLg "github.com/jeffotoni/gjwtcheck//models/user"
 	jwtGen "github.com/jeffotoni/gjwtcheck/apicore/pkg/jwt"
+	mLg "github.com/jeffotoni/gjwtcheck/models/user"
 
 	mw "github.com/jeffotoni/gjwtcheck/apicore/middleware"
 	mErrors "github.com/jeffotoni/gjwtcheck/apicore/models/errors"

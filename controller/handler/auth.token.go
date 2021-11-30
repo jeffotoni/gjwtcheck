@@ -8,7 +8,6 @@ import (
 	fmts "github.com/jeffotoni/gjwtcheck/apicore/pkg/fmts"
 	hd "github.com/jeffotoni/gjwtcheck/apicore/pkg/headers"
 	jwtCore "github.com/jeffotoni/gjwtcheck/apicore/pkg/jwt"
-	rLg "github.com/jeffotoni/gjwtcheck/repo/user"
 )
 
 func (s StructConnect) Token(c *fiber.Ctx) error {
@@ -18,12 +17,6 @@ func (s StructConnect) Token(c *fiber.Ctx) error {
 	authorization := string(c.Request().Header.Peek("X-Authorization"))
 	if len(string(authorization)) <= 0 {
 		return c.Status(code).JSON(mErrors.Errors{Msg: `Error: failed to try to generate token`})
-	}
-
-	err := rLg.Token(s.DB, authorization)
-	if err != nil {
-		code = 401
-		return c.Status(code).JSON(mErrors.Errors{Msg: "Error: User could not be authenticated!"})
 	}
 
 	var response mjwt.ResponseToken
