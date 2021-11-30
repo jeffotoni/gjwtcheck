@@ -24,7 +24,7 @@ func SetExpires(second int) {
 
 func Token(user string, IP string) (string, string, error) {
 	if expires == 0 {
-		expires = time.Now().Add(time.Hour * 72).Unix()
+		expires = time.Now().Add(time.Minute * 5).Unix()
 	}
 
 	layout := "2006-01-02 15:04:05"

@@ -1,14 +1,10 @@
 package handler
 
 import (
-	"time"
-
 	"github.com/gofiber/fiber/v2"
 	mw "github.com/jeffotoni/gjwtcheck/apicore/middleware"
 	mErrors "github.com/jeffotoni/gjwtcheck/apicore/models/errors"
 	fmts "github.com/jeffotoni/gjwtcheck/apicore/pkg/fmts"
-	hd "github.com/jeffotoni/gjwtcheck/apicore/pkg/headers"
-	jwtCore "github.com/jeffotoni/gjwtcheck/apicore/pkg/jwt"
 	mLg "github.com/jeffotoni/gjwtcheck/models/user"
 )
 
@@ -22,7 +18,8 @@ func (s StructConnect) User(c *fiber.Ctx) error {
 	}
 
 	var user mLg.UserAuth
-	if err := c.BodyParser(&user); err != nil {
+	err = c.BodyParser(&user)
+	if err != nil {
 		code = 400
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: ", err.Error())})
 	}
@@ -37,19 +34,10 @@ func (s StructConnect) User(c *fiber.Ctx) error {
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: "User is mandatory"})
 	}
 
-	var response mLg.User2
-	if response.Token, response.Expires, err = jwtCore.Token(response.UserToken, hd.IP(c)); err != nil {
-		code = 401
-		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: ", err.Error())})
-	}
-
-	var jsonstr string = fmts.ConcatStr(`{"accesstype":1,"iduser":"`,
-		response.UserToken, `","data":"`, time.Now().Format("2006-01-02"), `","hora":"`,
-		time.Now().Format("15:04:05"), `","useragent":"`, hd.UserAgent(c), `","ip":"`, hd.IP(c), `"}`)
-
-	println(jsonstr)
+	var u mLg.User
 	code = 200
-	response.UserToken = ""
-	response.Message = "Welcome"
-	return c.Status(code).JSON(response)
+	u.Name = "Jeff"
+	u.AvatarURL = "https://www.letsgophers.com/web/images/jeffotoni.png"
+	u.Message = "seja bem vindo test jwt"
+	return c.Status(code).JSON(u)
 }

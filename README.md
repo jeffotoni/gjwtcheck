@@ -37,8 +37,8 @@ localhost:8080/auth/check
 
 {
     "user": "<your@email.com>",
-    "key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "expires": "2021-05-26 10:26:36"
+    "key": "<token-jwt>",
+    "expires": "<2021-05-26 10:26:36>"
 }
 
 ```
@@ -87,20 +87,5 @@ localhost:8080/auth/token
     "expires": "2021-05-28 18:50:08",
     "message": "Welcome"
 }
-
-```
-
-
-## Logout
-```bash
-
-$ curl -i -XPOST -H "Content-type:application/json" \
--H "Authorization: Bearer $token3" \ 
-localhost:8080/auth/logout/:iduser
-```
-
-**Out:**
-```bash
-1
 
 ```
