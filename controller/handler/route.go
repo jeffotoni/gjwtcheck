@@ -10,9 +10,9 @@ import (
 
 	jwtware "github.com/gofiber/jwt/v3"
 
-	certKey "github.com/jeffotoni/gjwtcheck/apicore/cert"
-	mw "github.com/jeffotoni/gjwtcheck/apicore/middleware"
-	hd "github.com/jeffotoni/gjwtcheck/apicore/pkg/headers"
+	certKey "github.com/jeffotoni/gjwtcheck/core/cert"
+	mw "github.com/jeffotoni/gjwtcheck/core/middleware"
+	hd "github.com/jeffotoni/gjwtcheck/core/pkg/headers"
 )
 
 //AllRoutes todas as rotas

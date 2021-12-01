@@ -2,13 +2,13 @@ package handler
 
 import (
 	"github.com/gofiber/fiber/v2"
-	jwtGen "github.com/jeffotoni/gjwtcheck/apicore/pkg/jwt"
+	jwtGen "github.com/jeffotoni/gjwtcheck/core/pkg/jwt"
 	mLg "github.com/jeffotoni/gjwtcheck/models/user"
 
-	mw "github.com/jeffotoni/gjwtcheck/apicore/middleware"
-	mErrors "github.com/jeffotoni/gjwtcheck/apicore/models/errors"
-	"github.com/jeffotoni/gjwtcheck/apicore/pkg/fmts"
-	hd "github.com/jeffotoni/gjwtcheck/apicore/pkg/headers"
+	mw "github.com/jeffotoni/gjwtcheck/core/middleware"
+	mErrors "github.com/jeffotoni/gjwtcheck/core/models/errors"
+	"github.com/jeffotoni/gjwtcheck/core/pkg/fmts"
+	hd "github.com/jeffotoni/gjwtcheck/core/pkg/headers"
 )
 
 func (s StructConnect) HS256(c *fiber.Ctx) error {

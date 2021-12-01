@@ -3,7 +3,7 @@
 
 package muser
 
-import mToken "github.com/jeffotoni/gjwtcheck/apicore/models/jwt"
+import mToken "github.com/jeffotoni/gjwtcheck/core/models/jwt"
 
 // User structure
 type User struct {

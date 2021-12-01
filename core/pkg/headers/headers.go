@@ -8,8 +8,8 @@ import (
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
-	"github.com/jeffotoni/gjwtcheck/apicore/cert"
-	mJwt "github.com/jeffotoni/gjwtcheck/apicore/models/jwt"
+	"github.com/jeffotoni/gjwtcheck/core/cert"
+	mJwt "github.com/jeffotoni/gjwtcheck/core/models/jwt"
 )
 
 func RemoteAddr(r *http.Request) string {

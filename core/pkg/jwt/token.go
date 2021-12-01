@@ -8,12 +8,12 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 	//"github.com/golang-jwt/jwt/v4"
 	"github.com/gofiber/utils"
-	cert "github.com/jeffotoni/gjwtcheck/apicore/cert"
-	mJwt "github.com/jeffotoni/gjwtcheck/apicore/models/jwt"
+	cert "github.com/jeffotoni/gjwtcheck/core/cert"
+	mJwt "github.com/jeffotoni/gjwtcheck/core/models/jwt"
 
 	"log"
 
-	"github.com/jeffotoni/gjwtcheck/apicore/pkg/fmts"
+	"github.com/jeffotoni/gjwtcheck/core/pkg/fmts"
 )
 
 var (

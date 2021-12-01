@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/gofiber/fiber/v2"
 	jwtware "github.com/gofiber/jwt/v2"
-	cert "github.com/jeffotoni/gjwtcheck/apicore/cert"
+	cert "github.com/jeffotoni/gjwtcheck/core/cert"
 )
 
 //Mwjwt Fiber jwt middleware call

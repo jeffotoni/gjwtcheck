@@ -3,9 +3,9 @@ package handler
 import (
 	"github.com/gofiber/fiber/v2"
 	jwt "github.com/golang-jwt/jwt/v4"
-	mw "github.com/jeffotoni/gjwtcheck/apicore/middleware"
-	mErrors "github.com/jeffotoni/gjwtcheck/apicore/models/errors"
-	fmts "github.com/jeffotoni/gjwtcheck/apicore/pkg/fmts"
+	mw "github.com/jeffotoni/gjwtcheck/core/middleware"
+	mErrors "github.com/jeffotoni/gjwtcheck/core/models/errors"
+	fmts "github.com/jeffotoni/gjwtcheck/core/pkg/fmts"
 	mLg "github.com/jeffotoni/gjwtcheck/models/user"
 )
 

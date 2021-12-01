@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/gofiber/fiber/v2"
-	mw "github.com/jeffotoni/gjwtcheck/apicore/middleware"
+	mw "github.com/jeffotoni/gjwtcheck/core/middleware"
 )
 
 //Ping pong
