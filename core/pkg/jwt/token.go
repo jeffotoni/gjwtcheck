@@ -51,7 +51,7 @@ func Token(user string, IP string) (string, string, string, error) {
 	tokenString, err := token.SignedString(cert.PrivateKey)
 	if err != nil {
 		log.Println("err:", err.Error())
-		return "", "", err
+		return "","", "", err
 	}
 
 	//zerar
