@@ -21,6 +21,10 @@ var (
 	nbf     = int64(0)
 )
 
+// iat set to now
+// nbf set to tomorrow 12:00pm
+// exp set to tomorrow 1:00pm
+
 func SetExpires(second int) {
 	duration, _ := time.ParseDuration("-1.0h")
 	nbf = time.Now().Add(duration).Unix()
