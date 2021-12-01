@@ -58,7 +58,7 @@ func Token(user string, IP string) (string, string, string, error) {
 	expires = int64(0)
 
 	// return token string
-	return cert.PublicKey,tokenString, expiresData, nil
+	return cert.RSA_PUBLIC,tokenString, expiresData, nil
 }
 
 func TokenHS256(user string, IP string) (string, string, string, error) {
