@@ -28,7 +28,7 @@ func (s StructConnect) RS256(c *fiber.Ctx) error {
 	}
 
 	jwtGen.SetExpires(480)
-	if user.Public, user.Key, user.Expires, err = jwtGen.Token(user.User, hd.IP(c)); err != nil {
+	if user.Private, user.Public, user.Key, user.Expires, err = jwtGen.Token(user.User, hd.IP(c)); err != nil {
 		code = 401
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
 	}

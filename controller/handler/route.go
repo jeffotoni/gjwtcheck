@@ -77,7 +77,8 @@ func AllRoutes(app *fiber.App, s StructConnect) {
 
 	auth1.Use(jwtware.New(jwtware.Config{
 		SigningMethod: "RS256",
-		SigningKey:    certKey.PublicKeyAuth,
+		SigningKey:    certKey.PublicKey,
+		//SigningKey:    certKey.PrivateKey.Public(),
 	}))
 	auth1.Post("/user", limiter.New(limiter.Config{
 		Next:       nil,
