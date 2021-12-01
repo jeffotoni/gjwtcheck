@@ -18,9 +18,12 @@ import (
 
 var (
 	expires = int64(0)
+	nbf     = int64(0)
 )
 
 func SetExpires(second int) {
+	duration, _ := time.ParseDuration("-1.0h")
+	nbf = time.Now().Add(duration).Unix()
 	expires = time.Now().Add(time.Second * time.Duration(second)).Unix()
 }
 
@@ -40,7 +43,8 @@ func Token(user string, IP string) (string, string, string, error) {
 		Id:   utils.UUID(),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expires,
-			NotBefore: time.Now().Add(time.Hour * 1).Unix(),
+			NotBefore: nbf,
+			IssuedAt:  time.Now().Unix(),
 			Issuer: fmts.ConcatStr("gjwtcheck - created in:", time.Now().Format("2006-01-02 15:04:05"),
 				" expires:", expiresData),
 		},
@@ -78,7 +82,7 @@ func TokenHS256(user string, IP string) (string, string, string, error) {
 		Id:   utils.UUID(),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expires,
-			NotBefore: time.Now().Add(time.Hour * 1).Unix(),
+			//NotBefore: time.Now().Add(time.Hour * 1).Unix(),
 			Issuer: fmts.ConcatStr("gjwtcheck - created in:", time.Now().Format("2006-01-02 15:04:05"),
 				" expires:", expiresData),
 		},
