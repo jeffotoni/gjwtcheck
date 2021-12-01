@@ -21,7 +21,7 @@ func (s StructConnect) Token(c *fiber.Ctx) error {
 	var user mLg.UserAuth
 	user.User = "TestUser"
 	jwtGen.SetExpires(480)
-	if user.Private, user.Public, user.Key, user.Expires, err = jwtGen.Token(user.User, hd.IP(c)); err != nil {
+	if _, user.Public, user.Key, user.Expires, err = jwtGen.Token(user.User, hd.IP(c)); err != nil {
 		code = 401
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
 	}
