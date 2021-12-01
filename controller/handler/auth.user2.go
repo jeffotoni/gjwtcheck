@@ -8,7 +8,7 @@ import (
 	mLg "github.com/jeffotoni/gjwtcheck/models/user"
 )
 
-func (s StructConnect) User(c *fiber.Ctx) error {
+func (s StructConnect) User2(c *fiber.Ctx) error {
 	c.Set("Content-Type", "application/json")
 	var err error
 	msgID := mw.GetUUID(c)
@@ -16,7 +16,6 @@ func (s StructConnect) User(c *fiber.Ctx) error {
 	if len(string(c.Body())) <= 0 {
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: `Error: empty body`})
 	}
-
 	var user mLg.UserAuth
 	err = c.BodyParser(&user)
 	if err != nil {
@@ -36,8 +35,8 @@ func (s StructConnect) User(c *fiber.Ctx) error {
 
 	var u mLg.User
 	code = 200
-	u.Name = "Jeff-RS256"
+	u.Name = "Jeff-HS256"
 	u.AvatarURL = "https://www.letsgophers.com/web/images/jeffotoni.png"
-	u.Message = "seja bem vindo test jwt- RS256"
+	u.Message = "seja bem vindo test jwt HS256"
 	return c.Status(code).JSON(u)
 }

@@ -11,6 +11,9 @@ RUN apk add --no-cache upx
 RUN apk add --no-cache tzdata
 ENV TZ America/Sao_Paulo
 
+# Relocate the timezone file
+RUN mkdir -p /config/etc && mv /etc/timezone /config/etc/ && ln -s /config/etc/timezone /etc/
+
 COPY --from=builder /go/bin/gjwtcheck /go/bin/gjwtcheck
 WORKDIR /go/bin
 RUN upx gjwtcheck

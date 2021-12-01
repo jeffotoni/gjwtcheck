@@ -19,6 +19,8 @@ type Claim struct {
 	//
 	User string `json:"user"`
 
+	Id string `json:"id"`
+
 	//
 	//
 	//

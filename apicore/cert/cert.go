@@ -11,6 +11,8 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
+//echo -n foo | openssl dgst -binary -sha256 | openssl base64
+
 // openssl genrsa -out private.rsa 1024
 // openssl rsa -in private.rsa -pubout > public.rsa.pub
 const (
@@ -66,6 +68,8 @@ A4wItqHB2ORAVI+PRQIDAQAB
 )
 
 var (
+	SecretSH256 = "$#2929399#.##2333"
+
 	//PrivateKey rsa
 	PrivateKeyAuth *rsa.PrivateKey
 	//PublicKey rsa

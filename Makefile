@@ -1,14 +1,7 @@
 # Makefile
 .EXPORT_ALL_VARIABLES:	
 
-AWS_DEFAULT_PROFILE=gjwtcheck
-
-#GO111MODULE=on
-#GOPROXY=direct
-#GOSUMDB=off
 GOPRIVATE=github.com/jeffotoni/gjwtcheck
-
-region=us-east-1
 
 build:
 	@echo "########## Compilando nossa API ... "
