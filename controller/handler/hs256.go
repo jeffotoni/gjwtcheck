@@ -8,7 +8,7 @@ import (
 	mw "github.com/jeffotoni/gjwtcheck/core/middleware"
 	mErrors "github.com/jeffotoni/gjwtcheck/core/models/errors"
 	"github.com/jeffotoni/gjwtcheck/core/pkg/fmts"
-	hd "github.com/jeffotoni/gjwtcheck/core/pkg/headers"
+	. "github.com/jeffotoni/gjwtcheck/core/pkg/headers"
 )
 
 func (s StructConnect) HS256(c *fiber.Ctx) error {
@@ -28,7 +28,7 @@ func (s StructConnect) HS256(c *fiber.Ctx) error {
 	}
 
 	jwtGen.SetExpires(240)
-	if user.Key, user.Expires, err = jwtGen.TokenHS256(user.User, hd.IP(c)); err != nil {
+	if user.Public, user.Key, user.Expires, err = jwtGen.TokenHS256(user.User, IP(c)); err != nil {
 		code = 401
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
 	}

@@ -1,29 +1,18 @@
 # Makefile
-.EXPORT_ALL_VARIABLES:	
+.EXPORT_ALL_VARIABLES:
 
 GOPRIVATE=github.com/jeffotoni/gjwtcheck
 
 build:
-	@echo "########## Compilando nossa API ... "
+	@echo "########## build API ... "
 	CGO_ENABLED=0 GOOS=linux go build --trimpath -ldflags="-s -w" -o gjwtcheck main.go
-	@echo "buid completo..."
-	@echo "\033[0;33m################ Enviando para o server #####################\033[0m"
+	@echo "buid success..."
 
 update:
-	@echo "########## Compilando nossa API ... "
+	@echo "########## build update API ... "
 	@rm -f go.*
 	go mod init github.com/jeffotoni/gjwtcheck
 	go mod tidy -compat=1.17 -go=1.17
 	CGO_ENABLED=0 GOOS=linux go build --trimpath -ldflags="-s -w" -o gjwtcheck main.go
-	@echo "buid update completo..."
-	@echo "fim"
-
-
-tests:
-	go test github.com/jeffotoni/gjwtcheck/gjwtcheck/controller/handler -v
-	
-deploy.aws:
-	@make build
-	@echo "########## Compilando nossa API ... "
-	sh deploy-aws.sh
-	@echo "fim"
+	@echo "buid update success..."
+	@echo "the end"
