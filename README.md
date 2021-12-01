@@ -19,7 +19,57 @@ localhost:8080/ping
 
 ```
 
-## Check
+## hs256
+```bash
+$ curl -i -XPOST -H "Content-type:application/json" \
+localhost:8080/hs256
+-d '
+{
+    "user": "<your@email.com>"
+}
+'
+
+```
+
+**Out:**
+```bash
+{
+    "user": "<your@email.com>",
+    "key": "<token-jwt>",
+    "expires": "<2021-05-26 10:26:36>"
+}
+
+```
+
+## hs256/user
+```bash
+
+$ curl -i -XPOST -H "Content-type:application/json" \
+-H "Authorization: Bearer $token2" 
+localhost:8080/hs256/user \
+-d '
+{
+    "user": "<your@email.com>",
+    "password": "<yourpassword>"
+}
+'
+
+```
+
+**Out:**
+```bash
+{
+   "name":"HS256",
+   "user":"jeff@gmail.com",
+   "id":"447b22be-2d17-4253-9f4a-77a8501ef168",
+   "iss":"gjwtcheck - created in:2021-12-01 00:01:42 expires:2021-12-01 00:05:42",
+   "user_avatar":"https://logodix.com/logo/1989600.png",
+   "message":"seja bem JWT HS256"
+}
+
+```
+
+## rs256
 ```bash
 $ curl -i -XPOST -H "Content-type:application/json" \
 localhost:8080/rs256
@@ -41,12 +91,12 @@ localhost:8080/rs256
 
 ```
 
-## User
+## rs256/user
 ```bash
 
 $ curl -i -XPOST -H "Content-type:application/json" \
 -H "Authorization: Bearer $token2" 
-localhost:8080/auth/user \
+localhost:8080/rs256/user \
 -d '
 {
     "user": "<your@email.com>",
@@ -59,31 +109,12 @@ localhost:8080/auth/user \
 **Out:**
 ```bash
 {
-    "user_name": "name",
-    "user_email": "<your@email.com>",
-    "avatar_url": "",
-    "message": "Welcome",
-    "token": "eyJhbGciOiJSU...",
-    "expires": "2021-05-28 18:50:08"
-}
-
-```
-
-## Token
-```bash
-
-$ curl -i -XGET -H "Content-type:application/json" \
--H "X-Authorization:0c768ad97c01cc31a0f7a93550611cd7d28c60e743262b132286325aa05a500f" \
-localhost:8080/auth/token
-
-```
-
-**Out:**
-```bash
-{
-    "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMGM3NjhhZDk3YzAxY2MzMWEwZjdhOTM1NTA2MTFjZDxxxxxx",
-    "expires": "2021-05-28 18:50:08",
-    "message": "Welcome"
+   "name":"RS256",
+   "user":"jeff@gmail.com",
+   "id":"447b22be-2d17-4253-9f4a-77a8501ef168",
+   "iss":"gjwtcheck - created in:2021-12-01 00:01:42 expires:2021-12-01 00:05:42",
+   "user_avatar":"https://logodix.com/logo/1989600.png",
+   "message":"seja bem JWT RS256"
 }
 
 ```
