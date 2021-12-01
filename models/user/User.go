@@ -11,7 +11,7 @@ type User struct {
 	User      string `json:"user,omitempty"`
 	Id        string `json:"id,omitempty"`
 	Iss       string `json:"iss,omitempty"`
-	AvatarURL string `json:"user_avatar,omitempty"`
+	AvatarURL string `json:"avatar,omitempty"`
 	Message   string `json:"message"`
 	mToken.ResponseToken
 }

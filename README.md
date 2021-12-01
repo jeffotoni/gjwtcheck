@@ -63,7 +63,7 @@ localhost:8080/hs256/user \
    "user":"jeff@gmail.com",
    "id":"447b22be-2d17-4253-9f4a-77a8501ef168",
    "iss":"gjwtcheck - created in:2021-12-01 00:01:42 expires:2021-12-01 00:05:42",
-   "user_avatar":"https://logodix.com/logo/1989600.png",
+   "avatar":"https://logodix.com/logo/1989600.png",
    "message":"seja bem JWT HS256"
 }
 
@@ -113,7 +113,7 @@ localhost:8080/rs256/user \
    "user":"jeff@gmail.com",
    "id":"447b22be-2d17-4253-9f4a-77a8501ef168",
    "iss":"gjwtcheck - created in:2021-12-01 00:01:42 expires:2021-12-01 00:05:42",
-   "user_avatar":"https://logodix.com/logo/1989600.png",
+   "avatar":"https://logodix.com/logo/1989600.png",
    "message":"seja bem JWT RS256"
 }
 
