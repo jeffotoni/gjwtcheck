@@ -30,6 +30,22 @@ localhost:8080/ping
 }
 ```
 
+## Token
+```bash
+$ curl -i -XPOST -H "Content-type:application/json" \
+localhost:8080/token
+```
+
+**Out:**
+```bash
+{
+   "user":"TestUser",
+   "token":"<token-jwt-rs256-here>",
+   "public":"<public-rsa-pem>",
+   "expires":"2021-12-01 05:12:05"
+}
+```
+
 ## hs256
 ```bash
 $ curl -i -XPOST -H "Content-type:application/json" \
