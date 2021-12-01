@@ -10,13 +10,13 @@ FROM alpine:latest as builder2
 RUN apk add --no-cache upx
 RUN apk add --no-cache tzdata
 ENV TZ America/Sao_Paulo
-# Relocate the timezone file
-# RUN mkdir -p /config/etc && mv /etc/timezone /config/etc/ && ln -s /config/etc/timezone /etc/
+RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 
 COPY --from=builder /go/bin/gjwtcheck /go/bin/gjwtcheck
 WORKDIR /go/bin
 RUN upx gjwtcheck
 RUN apk del --no-cache upx
+RUN apk del --no-cache tzdata
 
 FROM scratch
 # Copy our static executable.
