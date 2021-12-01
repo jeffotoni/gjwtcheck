@@ -61,28 +61,3 @@ func Jwt(c *fiber.Ctx) string {
 	jwt = strings.TrimSpace(jwt)
 	return jwt
 }
-
-// func JwtUser(c *fiber.Ctx) (string, error) {
-// 	tokenString := string(c.Request().Header.Peek("Authorization"))
-// 	if len(tokenString) == 0 {
-// 		return "", errors.New("token is empty")
-// 	}
-// 	tokenString = strings.Replace(tokenString, "Bearer", "", -1)
-// 	tokenString = strings.TrimSpace(tokenString)
-// 	if len(tokenString) == 0 || len(tokenString) < 100 {
-// 		return "", errors.New("token is required")
-// 	}
-// 	token, _ := jwt.ParseWithClaims(tokenString, &mJwt.Claim{}, func(token *jwt.Token) (interface{}, error) {
-// 		return []byte(cert.PrivateKey), nil
-// 	})
-// 	// if err != nil {
-// 	// 	return "", err
-// 	// }
-// 	//log.Println(err)
-
-// 	claims := token.Claims.(*mJwt.Claim)
-// 	if claims != nil {
-// 		return claims.User, nil
-// 	}
-// 	return "", errors.New("token is invalid")
-// }
