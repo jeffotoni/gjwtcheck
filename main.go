@@ -8,6 +8,7 @@ import (
 	route "github.com/jeffotoni/gjwtcheck/controller/handler"
 )
 
+// main run program
 func main() {
 	app := fiber.New(fiber.Config{BodyLimit: 10 * 1024 * 1024})
 	route.AllRoutes(app, route.StructConnect{})
