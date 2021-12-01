@@ -100,7 +100,6 @@ localhost:8080/rs256
 
 ## rs256/user
 ```bash
-
 $ curl -i -XPOST -H "Content-type:application/json" \
 -H "Authorization: Bearer $token" 
 localhost:8080/rs256/user \
