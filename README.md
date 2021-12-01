@@ -36,6 +36,10 @@ $ curl -i -XPOST -H "Content-type:application/json" \
 localhost:8080/token
 ```
 
+```bash
+$ curl -i -XGET -H "Content-type:application/json" \
+localhost:8080/token
+```
 **Out:**
 ```bash
 {

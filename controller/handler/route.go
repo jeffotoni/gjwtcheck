@@ -49,6 +49,18 @@ func AllRoutes(app *fiber.App, s StructConnect) {
 			return c.Status(429).SendString(`{"msg":"Much Request #bloqued"}`)
 		}}), s.Token)
 
+	app.Get("/token", limiter.New(limiter.Config{
+		Next:       nil,
+		Max:        100,
+		Expiration: 1 * time.Second,
+		KeyGenerator: func(c *fiber.Ctx) string {
+			return hd.IP(c)
+		},
+		LimitReached: func(c *fiber.Ctx) error {
+			//ou 401
+			return c.Status(429).SendString(`{"msg":"Much Request #bloqued"}`)
+		}}), s.Token)
+
 	// ------------------------------------------------
 	auth1 := app.Group("rs256/")
 	auth1.Post("/", limiter.New(limiter.Config{
