@@ -86,7 +86,8 @@ func TokenHS256(user string, IP string) (string, string, string, error) {
 		Id:   utils.UUID(),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expires,
-			//NotBefore: time.Now().Add(time.Hour * 1).Unix(),
+			NotBefore: nbf,
+			IssuedAt:  time.Now().Unix(),
 			Issuer: fmts.ConcatStr("gjwtcheck - created in:", time.Now().Format("2006-01-02 15:04:05"),
 				" expires:", expiresData),
 		},
