@@ -45,7 +45,7 @@ localhost:8080/hs256
 ```bash
 
 $ curl -i -XPOST -H "Content-type:application/json" \
--H "Authorization: Bearer $token2" 
+-H "Authorization: Bearer $token" 
 localhost:8080/hs256/user \
 -d '
 {
@@ -95,7 +95,7 @@ localhost:8080/rs256
 ```bash
 
 $ curl -i -XPOST -H "Content-type:application/json" \
--H "Authorization: Bearer $token2" 
+-H "Authorization: Bearer $token" 
 localhost:8080/rs256/user \
 -d '
 {
