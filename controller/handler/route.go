@@ -25,18 +25,6 @@ func AllRoutes(app *fiber.App, s StructConnect) {
 	mw.Compress(app)
 	mw.MsgUUID(app)
 
-	app.Get("/token", limiter.New(limiter.Config{
-		Next:       nil,
-		Max:        100,
-		Expiration: 1 * time.Second,
-		KeyGenerator: func(c *fiber.Ctx) string {
-			return hd.IP(c)
-		},
-		LimitReached: func(c *fiber.Ctx) error {
-			//ou 401
-			return c.Status(429).SendString(`{"msg":"Much Request #bloqued"}`)
-		}}), s.Token)
-
 	app.Get("/ping", limiter.New(limiter.Config{
 		Next:       nil,
 		Max:        100,
@@ -61,7 +49,7 @@ func AllRoutes(app *fiber.App, s StructConnect) {
 		LimitReached: func(c *fiber.Ctx) error {
 			//ou 401
 			return c.Status(429).SendString(`{"msg":"Much Request #bloqued"}`)
-		}}), s.Check)
+		}}), s.RS256)
 
 	auth1.Use(jwtware.New(jwtware.Config{
 		SigningMethod: "RS256",
@@ -91,7 +79,7 @@ func AllRoutes(app *fiber.App, s StructConnect) {
 		LimitReached: func(c *fiber.Ctx) error {
 			//ou 401
 			return c.Status(429).SendString(`{"msg":"Much Request #bloqued"}`)
-		}}), s.Check2)
+		}}), s.HS256)
 
 	// JWT Middleware
 	auth2.Use(jwtware.New(jwtware.Config{

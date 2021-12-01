@@ -2,6 +2,7 @@ package handler
 
 import (
 	"github.com/gofiber/fiber/v2"
+	jwt "github.com/golang-jwt/jwt/v4"
 	mw "github.com/jeffotoni/gjwtcheck/apicore/middleware"
 	mErrors "github.com/jeffotoni/gjwtcheck/apicore/models/errors"
 	fmts "github.com/jeffotoni/gjwtcheck/apicore/pkg/fmts"
@@ -33,10 +34,15 @@ func (s StructConnect) User2(c *fiber.Ctx) error {
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: "User is mandatory"})
 	}
 
+	userx := c.Locals("user").(*jwt.Token)
+	umap := userx.Claims.(jwt.MapClaims)
 	var u mLg.User
 	code = 200
-	u.Name = "Jeff-HS256"
-	u.AvatarURL = "https://www.letsgophers.com/web/images/jeffotoni.png"
-	u.Message = "seja bem vindo test jwt HS256"
+	u.Name = "HS256"
+	u.AvatarURL = "https://logodix.com/logo/1989600.png"
+	u.Message = "seja bem JWT HS256"
+	u.User = umap["user"].(string)
+	u.Id = umap["id"].(string)
+	u.Iss = umap["iss"].(string)
 	return c.Status(code).JSON(u)
 }

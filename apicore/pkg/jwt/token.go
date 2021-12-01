@@ -26,7 +26,7 @@ func SetExpires(second int) {
 
 func Token(user string, IP string) (string, string, error) {
 	if expires == 0 {
-		expires = time.Now().Add(time.Minute * 5).Unix()
+		expires = time.Now().Add(time.Minute * 6).Unix()
 	}
 
 	layout := "2006-01-02 15:04:05"
@@ -63,7 +63,7 @@ func Token(user string, IP string) (string, string, error) {
 
 func TokenHS256(user string, IP string) (string, string, error) {
 	if expires == 0 {
-		expires = time.Now().Add(time.Minute * 5).Unix()
+		expires = time.Now().Add(time.Minute * 4).Unix()
 	}
 
 	layout := "2006-01-02 15:04:05"
@@ -88,7 +88,7 @@ func TokenHS256(user string, IP string) (string, string, error) {
 	// Generate encoded token and send it as response.
 	tokenString, err := token.SignedString([]byte(cert.SecretSH256))
 	if err != nil {
-		println("error................ token...")
+		log.Println("Error SignedString Token:", err.Error())
 		return tokenString, expiresData, err
 	}
 

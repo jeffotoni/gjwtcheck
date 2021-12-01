@@ -11,7 +11,7 @@ import (
 	hd "github.com/jeffotoni/gjwtcheck/apicore/pkg/headers"
 )
 
-func (s StructConnect) Check2(c *fiber.Ctx) error {
+func (s StructConnect) RS256(c *fiber.Ctx) error {
 	c.Set("Content-Type", "application/json")
 	var err error
 
@@ -26,9 +26,8 @@ func (s StructConnect) Check2(c *fiber.Ctx) error {
 		code = 400
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: ", err.Error())})
 	}
-
-	jwtGen.SetExpires(60)
-	if user.Key, user.Expires, err = jwtGen.TokenHS256(user.User, hd.IP(c)); err != nil {
+	jwtGen.SetExpires(180)
+	if user.Key, user.Expires, err = jwtGen.Token(user.User, hd.IP(c)); err != nil {
 		code = 401
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
 	}

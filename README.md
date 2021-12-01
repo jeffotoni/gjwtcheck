@@ -1,12 +1,12 @@
 # JWT Check - Mock para tests 
 
-Somente um exemplo para validarmos token JWT e fazer alguns tests.
+Este repo é somente um exemplo simples de geração de token **JWT** usando **algorítimo RS256** e **algoritimo HS256**.
+Esta api é responsável por gerar o token e usa-lo para valida-lo.
 
 ## Ping
 ```bash
-
 $ curl -i -XGET -H "Content-type:application/json" 
-localhost:8080/auth/ping
+localhost:8080/ping
 
 ```
 
@@ -21,9 +21,8 @@ localhost:8080/auth/ping
 
 ## Check
 ```bash
-
 $ curl -i -XPOST -H "Content-type:application/json" \
-localhost:8080/auth/check 
+localhost:8080/rs256
 -d '
 {
     "user": "<your@email.com>"
@@ -34,7 +33,6 @@ localhost:8080/auth/check
 
 **Out:**
 ```bash
-
 {
     "user": "<your@email.com>",
     "key": "<token-jwt>",

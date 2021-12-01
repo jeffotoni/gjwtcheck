@@ -12,9 +12,9 @@ type ResponseToken struct {
 	//
 	// token
 	//
-	Token string `json:"token"`
+	Token string `json:"token,omitempty"`
 
-	Expires string `json:"expires"`
+	Expires string `json:"expires,omitempty"`
 
 	Message string `json:"message"`
 }
