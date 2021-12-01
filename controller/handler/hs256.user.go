@@ -40,7 +40,7 @@ func (s StructConnect) User2(c *fiber.Ctx) error {
 	code = 200
 	u.Name = "HS256"
 	u.AvatarURL = "https://logodix.com/logo/1989600.png"
-	u.Message = "seja bem JWT HS256"
+	u.Message = "Welcome JWT HS256"
 	u.User = umap["user"].(string)
 	u.Id = umap["id"].(string)
 	u.Iss = umap["iss"].(string)
