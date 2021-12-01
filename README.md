@@ -45,7 +45,7 @@ localhost:8080/hs256
 ```bash
 {
     "user": "<your@email.com>",
-    "key": "<token-jwt>",
+    "token": "<token-jwt>",
     "secret": "<secret-hs256-here>",
     "expires": "<2021-05-26 10:26:36>"
 }
@@ -92,7 +92,7 @@ localhost:8080/rs256
 ```bash
 {
     "user": "<your@email.com>",
-    "key": "<token-jwt>",
+    "token": "<token-jwt>",
     "public": "<rsa-public-here>"
     "expires": "<2021-05-26 10:26:36>"
 }
