@@ -40,6 +40,7 @@ func Token(user string, IP string) (string, string, string, error) {
 		Id:   utils.UUID(),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expires,
+			NotBefore: time.Now().Add(time.Hour * 1).Unix(),
 			Issuer: fmts.ConcatStr("gjwtcheck - created in:", time.Now().Format("2006-01-02 15:04:05"),
 				" expires:", expiresData),
 		},
@@ -51,14 +52,14 @@ func Token(user string, IP string) (string, string, string, error) {
 	tokenString, err := token.SignedString(cert.PrivateKey)
 	if err != nil {
 		log.Println("err:", err.Error())
-		return "","", "", err
+		return "", "", "", err
 	}
 
 	//zerar
 	expires = int64(0)
 
 	// return token string
-	return cert.RSA_PUBLIC,tokenString, expiresData, nil
+	return cert.RSA_PUBLIC, tokenString, expiresData, nil
 }
 
 func TokenHS256(user string, IP string) (string, string, string, error) {
@@ -77,6 +78,7 @@ func TokenHS256(user string, IP string) (string, string, string, error) {
 		Id:   utils.UUID(),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expires,
+			NotBefore: time.Now().Add(time.Hour * 1).Unix(),
 			Issuer: fmts.ConcatStr("gjwtcheck - created in:", time.Now().Format("2006-01-02 15:04:05"),
 				" expires:", expiresData),
 		},
@@ -96,5 +98,5 @@ func TokenHS256(user string, IP string) (string, string, string, error) {
 	expires = int64(0)
 
 	// return token string
-	return cert.SecretSH256,tokenString, expiresData, nil
+	return cert.SecretSH256, tokenString, expiresData, nil
 }
