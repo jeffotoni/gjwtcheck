@@ -14,7 +14,6 @@ RUN apk del --no-cache upx
 RUN apk del --no-cache tzdata
 
 FROM scratch
-# Copy our static executable.
 COPY --from=builder2 /go/bin/gjwtcheck /
 # Run the hello binary.
 EXPOSE 8080
