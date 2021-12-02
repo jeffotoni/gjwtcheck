@@ -1,18 +1,12 @@
 FROM golang:1.17 as builder
 WORKDIR /go/src/gjwtcheck
-COPY . . 
-
+COPY . .
 ENV GO111MODULE=on
 RUN CGO_ENABLED=0 go build --trimpath -ldflags="-s -w" -o gjwtcheck main.go
 RUN cp gjwtcheck /go/bin/gjwtcheck
 
 FROM alpine:latest as builder2
 RUN apk add --no-cache upx
-RUN apk add --no-cache tzdata
-ENV TZ America/Sao_Paulo
-RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-RUN echo "America/Sao_Paulo" >  /etc/timezone
-
 COPY --from=builder /go/bin/gjwtcheck /go/bin/gjwtcheck
 WORKDIR /go/bin
 RUN upx gjwtcheck
