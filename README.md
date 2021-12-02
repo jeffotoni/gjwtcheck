@@ -9,6 +9,7 @@ You can install gjwtcheck with docker.
 $  docker run --rm --name gjwtcheck -it \
 -p 8080:8080 jeffotoni/gjwtcheck:latest
 ```
+
 ## Install Local gjwtcheck
 You can clone it and run it on your local machine. Remembering that you have to have Go installed.
 ```bash
@@ -17,6 +18,7 @@ $ cd gjwtcheck
 $ make build 
 $ ./gjwtcheck
 ```
+
 ## Ping
 ```bash
 $ curl -i -XGET -H "Content-type:application/json" 
@@ -56,7 +58,8 @@ $ curl -i -XPOST -H "Content-type:application/json" \
 localhost:8080/hs256
 -d '
 {
-    "user": "<your@email.com>"
+    "user": "<your@email.com>",
+    "time": 3600
 }
 '
 ```
@@ -103,7 +106,8 @@ $ curl -i -XPOST -H "Content-type:application/json" \
 localhost:8080/rs256
 -d '
 {
-    "user": "<your@email.com>"
+    "user": "<your@email.com>",
+    "time": 3600
 }
 '
 ```

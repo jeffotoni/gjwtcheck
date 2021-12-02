@@ -33,7 +33,7 @@ func SetExpires(second int) {
 
 func Token(user string, IP string) (string, string, string, string, error) {
 	if expires == 0 {
-		expires = time.Now().Add(time.Minute * 6).Unix()
+		expires = time.Now().Add(time.Hour * 4).Unix()
 	}
 
 	layout := "2006-01-02 15:04:05"
@@ -74,7 +74,7 @@ func Token(user string, IP string) (string, string, string, string, error) {
 
 func TokenHS256(user string, IP string) (string, string, string, error) {
 	if expires == 0 {
-		expires = time.Now().Add(time.Minute * 4).Unix()
+		expires = time.Now().Add(time.Hour * 4).Unix()
 	}
 
 	layout := "2006-01-02 15:04:05"

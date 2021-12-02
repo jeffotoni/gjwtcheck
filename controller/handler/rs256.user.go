@@ -28,12 +28,12 @@ func (s StructConnect) User(c *fiber.Ctx) error {
 
 	if len(user.Password) == 0 {
 		code = 400
-		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: "password is mandatory"})
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: "password is required"})
 	}
 
 	if len(user.User) == 0 {
 		code = 400
-		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: "User is mandatory"})
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: "user is required"})
 	}
 
 	userx := c.Locals("user").(*jwt.Token)

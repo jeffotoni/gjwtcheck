@@ -27,7 +27,20 @@ func (s StructConnect) HS256(c *fiber.Ctx) error {
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: ", err.Error())})
 	}
 
-	jwtGen.SetExpires(3000)
+	if len(user.User) == 0 {
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: user required")})
+	}
+
+	if len(user.Password) == 0 {
+		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: password required")})
+	}
+
+	if user.Time > 0 {
+		jwtGen.SetExpires(user.Time)
+	} else {
+		jwtGen.SetExpires(3000)
+	}
+
 	if user.Secret, user.Key, user.Expires, err = jwtGen.TokenHS256(user.User, IP(c)); err != nil {
 		code = 401
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
