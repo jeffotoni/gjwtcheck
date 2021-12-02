@@ -15,6 +15,5 @@ RUN apk del --no-cache tzdata
 
 FROM scratch
 COPY --from=builder2 /go/bin/gjwtcheck /
-# Run the hello binary.
 EXPOSE 8080
 ENTRYPOINT ["/gjwtcheck"]
