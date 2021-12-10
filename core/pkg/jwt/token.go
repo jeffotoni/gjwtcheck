@@ -9,6 +9,7 @@ import (
 	//"github.com/golang-jwt/jwt/v4"
 	"github.com/gofiber/utils"
 	cert "github.com/jeffotoni/gjwtcheck/core/cert"
+
 	mJwt "github.com/jeffotoni/gjwtcheck/core/models/jwt"
 
 	"log"
@@ -31,7 +32,11 @@ func SetExpires(second int) {
 	expires = time.Now().Add(time.Second * time.Duration(second)).Unix()
 }
 
-func Token(user string, IP string) (string, string, string, string, error) {
+// type Claims struct {
+// 	Maps map[string]interface{} `json:"claim"`
+// }
+
+func Token(user string) (string, string, string, string, error) {
 	if expires == 0 {
 		expires = time.Now().Add(time.Hour * 4).Unix()
 	}
@@ -42,8 +47,17 @@ func Token(user string, IP string) (string, string, string, string, error) {
 	t := time.Unix(expires, 0)
 	expiresData := t.Format(layout)
 
+	// claims := jwt.MapClaims{}
+	// if len(c.Maps) > 0 {
+	// 	for key, val := range c.Maps {
+	// 		claims[key] = val
+	// 	}
+	// }
+
+	//fmt.Println(claims)
 	claims := mJwt.Claim{
 		User: user,
+		Key:  utils.UUID(),
 		Id:   utils.UUID(),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expires,
@@ -65,6 +79,7 @@ func Token(user string, IP string) (string, string, string, string, error) {
 
 	//zerar
 	expires = int64(0)
+	nbf = int64(0)
 
 	// return token string
 	// rsaP := cert.PrivateKey.Public()
@@ -107,6 +122,7 @@ func TokenHS256(user string, IP string) (string, string, string, error) {
 
 	//zerar
 	expires = int64(0)
+	nbf = int64(0)
 
 	// return token string
 	return cert.SecretSH256, tokenString, expiresData, nil

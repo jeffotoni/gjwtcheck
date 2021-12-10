@@ -8,7 +8,6 @@ import (
 	mw "github.com/jeffotoni/gjwtcheck/core/middleware"
 	mErrors "github.com/jeffotoni/gjwtcheck/core/models/errors"
 	"github.com/jeffotoni/gjwtcheck/core/pkg/fmts"
-	hd "github.com/jeffotoni/gjwtcheck/core/pkg/headers"
 )
 
 func (s StructConnect) RS256(c *fiber.Ctx) error {
@@ -20,6 +19,11 @@ func (s StructConnect) RS256(c *fiber.Ctx) error {
 	if len(string(c.Body())) <= 0 {
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: empty body")})
 	}
+
+	// var claim jwtGen.Claims
+	// if err := c.BodyParser(&claim); err != nil {
+	// 	return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: ", err.Error())})
+	// }
 
 	var user mLg.UserAuth
 	if err := c.BodyParser(&user); err != nil {
@@ -36,7 +40,7 @@ func (s StructConnect) RS256(c *fiber.Ctx) error {
 		jwtGen.SetExpires(3600)
 	}
 
-	if _, user.Public, user.Key, user.Expires, err = jwtGen.Token(user.User, hd.IP(c)); err != nil {
+	if _, user.Public, user.Key, user.Expires, err = jwtGen.Token(user.User); err != nil {
 		code = 401
 		return c.Status(code).JSON(mErrors.Errors{ID: msgID, Msg: fmts.ConcatStr("Error: when generating jwt - ", err.Error())})
 	}

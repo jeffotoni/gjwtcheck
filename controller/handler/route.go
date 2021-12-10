@@ -63,34 +63,14 @@ func AllRoutes(app *fiber.App, s StructConnect) {
 
 	// ------------------------------------------------
 	auth1 := app.Group("rs256/")
-	auth1.Post("/", limiter.New(limiter.Config{
-		Next:       nil,
-		Max:        100,
-		Expiration: 1 * time.Second,
-		KeyGenerator: func(c *fiber.Ctx) string {
-			return hd.IP(c)
-		},
-		LimitReached: func(c *fiber.Ctx) error {
-			//ou 401
-			return c.Status(429).SendString(`{"msg":"Much Request #bloqued"}`)
-		}}), s.RS256)
+	auth1.Post("/", s.RS256)
 
 	auth1.Use(jwtware.New(jwtware.Config{
 		SigningMethod: "RS256",
 		SigningKey:    certKey.PublicKey,
 		//SigningKey:    certKey.PrivateKey.Public(),
 	}))
-	auth1.Post("/user", limiter.New(limiter.Config{
-		Next:       nil,
-		Max:        100,
-		Expiration: 1 * time.Second,
-		KeyGenerator: func(c *fiber.Ctx) string {
-			return hd.IP(c)
-		},
-		LimitReached: func(c *fiber.Ctx) error {
-			//ou 401
-			return c.Status(429).SendString(`{"msg":"Much Request #bloqued"}`)
-		}}), s.User)
+	auth1.Post("/user", s.User)
 
 	// --------------------------------------------
 	auth2 := app.Group("hs256/")
