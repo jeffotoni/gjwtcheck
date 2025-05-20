@@ -1,10 +1,27 @@
-# JWT Check - Mock para tests 
+# 🔐 JWT CHECK
+#### JWT Token Generator and Verifier (RS256 & HS256) - MOCK TESTS
 
-This repo is just a simple example of JWT token generation using RS256 algorithm and HS256 algorithm. 
-This api is responsible for generating the token and using it to validate it.
+A lightweight proof-of-concept (POC) developed in Go to demonstrate the generation and validation of JWT (JSON Web Tokens) using both RS256 (asymmetric) and HS256 (symmetric) algorithms. Built primarily as an educational tool, this project helps developers understand how JWT works under the hood and how to integrate it within a Go web framework, such as Fiber.
+
+The system allows the generation of secure tokens using RSA key pairs (private.pem and public.pem), and also includes HS256 support with secret-based signing. Token validation routes are implemented to demonstrate full-cycle usage—from issuing to verifying tokens via middleware or endpoint logic.
+
+#### This project is ideal for those experimenting with:
+
+    • RSA key management in Go.
+    • Securing APIs with JWT.
+    • Understanding algorithmic differences between HS256 and RS256.
+    • Using openssl to create and manage keys:
+
+### Example Openssl
+```bash
+openssl genrsa -out private.pem 2048
+openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+```
 
 ## Install Local gjwtcheck with Docker
+
 You can install gjwtcheck with docker.
+
 ```bash
 $  docker run --rm --name gjwtcheck -it \
 -p 8080:8080 jeffotoni/gjwtcheck:latest
